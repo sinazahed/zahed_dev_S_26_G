@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: sina-app        
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - sina-network 
+  db:
+    image: mysql:8.0
+    container_name: sina-db            
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sina
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - sina-network  
+  nginx:
+    image: nginx:alpine
+    container_name: nginx                 
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - sina-network  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-sina
+    ports:
+      - "8081:80"
+    depends_on:
+        ['db']
+    links:
+        ['db:db']
+    networks:
+      - sina-network
+networks:
+  sina-network:
+    driver: bridge
