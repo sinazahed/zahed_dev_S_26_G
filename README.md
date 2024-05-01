@@ -7,6 +7,7 @@ It utilizes a **custom microframework** built with Object-Oriented Programming *
 The framework incorporates a **routing system** and follows the Model-View-Controller **(MVC)** pattern.
 
 Notably, it features a database driver abstraction to ensure flexibility; thus, facilitating the swapping of databases without major code alterations **(dependency inversion principle)**.
+
 And also **RESTful API** Provides access to application functionalities via API endpoints.
 
 
