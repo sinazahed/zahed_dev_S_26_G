@@ -15,20 +15,20 @@ class Router
 
     const BASE_CONTROLLER = 'App\Controllers\\';
 
-    public function __construct()
+    public function __construct(object $request)
     {
-        $this->request=new Request();
+        $this->request=$request;
         $this->routes = Route::all();
         $this->validator = new Validator();
-        $this->current_route = $this->findRoute($this->request);
+        $this->current_route = $this->findRoute();
     }
 
-    public function findRoute(Request $request) : array
+    public function findRoute() : array
     {
         foreach($this->routes as $route){
-            if(!in_array($request->getMethod(), $route['methods'])){
-                return [];
-            }
+            // if($request->getMethod() == $route['methods'][0]){
+            //     return $route;
+            // }
             if($this->is_regex_match($route['uri'])){
                 return $route;
             }
@@ -38,14 +38,14 @@ class Router
 
     private function is_regex_match($route) : bool
     {
-        global $request;
         $pattern = "/^" . str_replace(['/','{','}'],['\/','(?<','>[-%\w]+)'],$route) ."$/";
+
         if(!preg_match($pattern, $this->request->getUri(), $matches)){
             return false;
         }
         foreach($matches as $key => $value){
             if(!is_int($key)){
-                $request->setRouteParams($key, $value);
+                $this->request->setRouteParams($key, $value);
             }
         }
         return true;
@@ -61,6 +61,6 @@ class Router
         if(!method_exists($className,$method))
             throw new \Exception("Method $method Not Exist");
         $controller = new $className($this->request);
-        $controller->$method();
+        $controller->$method($this->request);
     }
 }

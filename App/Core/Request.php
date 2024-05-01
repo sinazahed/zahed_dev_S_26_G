@@ -10,6 +10,7 @@ class Request
     private $agent;
     private $uri;
     private $ip;
+    private static $booted = false;
 
     public function __construct()
     {
@@ -18,6 +19,16 @@ class Request
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->ip = $_SERVER['REMOTE_ADDR'];
         $this->uri = $_SERVER['REQUEST_URI'];
+        return $this->boot();
+        //$this->setRouteParams('id','value');
+    }
+
+    public static function boot()
+    {
+        if (!self::$booted) {
+            self::$booted = true;
+            return 'ok';
+        }
     }
 
     public function __get($key)
@@ -62,7 +73,7 @@ class Request
 
     public function getRouteParams($key)
     {
-        return $this->routeParams;
+        return $this->routeParams[$key];
     }
     // End Class Api
 
@@ -74,11 +85,6 @@ class Request
     public function exist(string $key) : bool
     {
         return isset($this->params[$key]);
-    }
-
-    public function redirect(string $route)
-    {
-        header("Location:" . site_url($route));
     }
 
     public function go()
