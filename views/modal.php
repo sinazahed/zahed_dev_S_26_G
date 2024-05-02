@@ -6,7 +6,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form method="post" action='<?php echo siteUrl("list/edit/$list->id") ?>' class="row g-3">
-
                 <div class="modal-body">
                     <div class="col-lg-12">
                         <input type="text" name="title" class="form-control" value="<?php echo $list->title ?>">
