@@ -12,6 +12,10 @@ Notably, it features a database driver abstraction to ensure flexibility; thus, 
 And also **RESTful API** Provides access to application functionalities via API endpoints.
 
 
+<img width="1439" alt="Screenshot 1403-02-13 at 17 14 35" src="https://github.com/sinazahed/zahed_dev_S_26_G/assets/29659040/cb3813ae-a261-4334-8db0-b9710d44dbca">
+
+
+
 
 # Technologies Used
 
