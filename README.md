@@ -47,7 +47,7 @@ composer install
 
 ### Database
 
-you can download and **import** the database from this url https://shopping.sinazahed.bio/lisq.sql
+you can download and **import** the database from this url https://shopping.sinazahed.bio/list.sql
 **or** run the create table command directly in mysql
 
 ```javascript
