@@ -37,4 +37,15 @@ abstract class Model
     {
         return self::$db->update(static::$table, $id, $data);
     }
+
+    public static function where(string $key , string $value)
+    {
+        return self::$db->where($key,$value,static::$table);
+    }
+
+    public static function get()
+    {
+        return self::$db->get();
+    }
+
 }

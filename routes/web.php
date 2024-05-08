@@ -10,3 +10,8 @@ Route::delete('/list/delete/{id}','ListController@delete');
 Route::post('/list/edit/{id}','ListController@update');
 
 Route::post('/list/toggle','ListController@toggle');
+
+//login and register
+
+Route::post('/auth/register','AuthController@register');
+Route::post('/auth/login','AuthController@login');

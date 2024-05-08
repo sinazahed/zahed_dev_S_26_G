@@ -6,6 +6,10 @@ use App\Core\Database\Contracts\DatabaseInterface;
 class MysqlDriver implements DatabaseInterface 
 {
     private $connection;
+    private static $table;
+
+
+    private $conditions = [];
 
     public function connect() :object 
     {
@@ -20,6 +24,24 @@ class MysqlDriver implements DatabaseInterface
         }
         return $this->connection;
     }
+
+    // class API
+
+    public function setTable($table)
+    {
+        if (isset(self::$table)) {
+            return self::$table;
+        } else {
+            self::$table = $table;
+            return self::$table;
+        }
+    }
+
+    public function getTable()
+    {
+        return self::$table;
+    }
+
 
     public function find(int $id, string $table) :array
     {
@@ -67,4 +89,44 @@ class MysqlDriver implements DatabaseInterface
         $bindValues = array_merge(array_values($data), [$id]);
         return $sth->execute($bindValues);        
     }
+
+    public function where($key, $value,$table=null)
+    {
+        //$this->conditions[$key] = $value;
+        $this->conditions[] = [$key, $value];
+
+        $this->setTable($table);
+        return $this;
+    }
+
+    public function get()
+    {
+        $this->connect();
+        $query = "SELECT * FROM " . self::$table;
+        if (!empty($this->conditions)) {
+            $whereClause = [];
+            $bindings = [];
+            foreach ($this->conditions as $condition) {
+                $whereClause[] = $condition[0] . ' = ?';
+                $bindings[] = $condition[1];
+            }
+            $query .= " WHERE " . implode(" AND ", $whereClause);
+        }
+        $sth = $this->connection->prepare($query);
+    
+        foreach ($bindings as $i => $value) {
+            $sth->bindValue($i + 1, $value);
+        }
+    
+        $sth->execute();
+        return $sth->fetchAll(\PDO::FETCH_OBJ);
+    }
+    
+
+
+    
+    
+    
+    
+
 }

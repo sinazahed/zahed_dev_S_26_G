@@ -1,5 +1,6 @@
 <?php
 define('BASE_PATH', __DIR__ . "/../");
+session_start();
 
 include BASE_PATH . "vendor/autoload.php";
 

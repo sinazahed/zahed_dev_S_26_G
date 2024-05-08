@@ -25,3 +25,18 @@ function json($data,$status=null){
     header('Content-Type: application/json');
     echo json_encode(['data' => $data]);
 }
+
+function hashPassword(string $password){
+    return md5($password);
+}
+
+function setUserSessionData(object $user){
+    $_SESSION['id'] = $user->id;
+    $_SESSION['name'] = $user->name;
+    $_SESSION['email'] = $user->email;
+}
+
+function isLogedIn(){
+    if(isset($_SESSION['id']))
+        redirectBack();
+}

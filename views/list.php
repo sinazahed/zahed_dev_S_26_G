@@ -8,7 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.min.css" integrity="sha512-hPHdudSZUyxoMNAYUu8c/2BDg1ah3tCtdhFwWTUN4qI8Y5emCPVKwyR1tJXhL/uBx7x7MYKGvc1TbdH6mwGS8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <body>
+
+<body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="" style="margin-top: -10px;"><i style="color: #75b798; font-size: 37px; margin-left: 20px; margin-right: 20px;" class="bi bi-cart-plus-fill"></i></a>
@@ -18,17 +19,25 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="https://shopping.sinazahed.bio/Api-Collection-Shopping-List.json" target="_blank">Download Api</a>
-                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">About</a> 
+                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">About</a>
                     <a class="nav-link" href="https://github.com/sinazahed/zahed_dev_S_26_G" target="_blank">Github</a>
                 </div>
             </div>
+            <?php if (isset($_SESSION['name'])) : ?>
+                <p>Welcome, <?php echo $_SESSION['name']; ?></p>
+            <?php else : ?>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-login">
+                    Login or Register
+                </button>
+            <?php endif; ?>
+
+            <?php include('modal/login.php') ?>
         </div>
     </nav>
     <?php include('about.php') ?>
     <div class="container">
         <div class="row">
             <form method="post" action="<?php echo siteUrl('list/add') ?>" class="row g-3">
-
                 <div class="col-lg-5">
                     <input type="text" name="title" class="form-control" placeholder="Add new product to shopping list">
                 </div>
@@ -63,7 +72,7 @@
                                 <button data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $list->id ?>" type="button" class="btn btn-warning" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                     Edit item
                                 </button>
-                                <?php include('modal.php') ?>
+                                <?php include('modal/modal.php') ?>
                             </td>
 
                         </tr>
