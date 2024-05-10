@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping_list</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.min.css" integrity="sha512-hPHdudSZUyxoMNAYUu8c/2BDg1ah3tCtdhFwWTUN4qI8Y5emCPVKwyR1tJXhL/uBx7x7MYKGvc1TbdH6mwGS8Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.min.css" integrity="sha512-4chYZ6A4vvq/i1Aihe1dEkNNLEjy0zuZqTL65CncfJoKxxMPDwrEpD9jB9kJY+Fa35sA8YbAowsdFGHNf5re+g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        <?php include('assets/style.css') ?>
+    </style> <!--  internal css -->
 
 <body>
+    <?php include('alerts.php') ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="" style="margin-top: -10px;"><i style="color: #75b798; font-size: 37px; margin-left: 20px; margin-right: 20px;" class="bi bi-cart-plus-fill"></i></a>
@@ -115,6 +119,13 @@
                 });
             });
         });
+
+        // Get the element by class name
+        var element = document.querySelector('.alert');
+        // Hide the alerts after 3 seconds
+        setTimeout(function() {
+            element.style.display = 'none';
+        }, 1500); // 3000 milliseconds = 3 seconds
     </script>
 </body>
 

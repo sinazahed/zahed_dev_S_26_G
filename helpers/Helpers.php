@@ -14,6 +14,7 @@ function view($path, $data=[]){
     extract($data);
     $path=str_replace('.', '/', $path);
     include_once BASE_PATH . "views/$path.php";
+    unsetFlashData();
 }
 
 function redirectBack(){
@@ -39,4 +40,18 @@ function setUserSessionData(object $user){
 function isLogedIn(){
     if(isset($_SESSION['id']))
         redirectBack();
+}
+
+function setFlashData(string $key, string $value){
+    $_SESSION['flash'][$key]=$value;
+}
+
+function unsetFlashData(){
+    unset($_SESSION['flash']);
+}
+
+function hasFlashData(string $key){
+    if(!isset($_SESSION['flash'][$key]))
+        return null;
+    return $_SESSION['flash'][$key]; 
 }

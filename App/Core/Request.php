@@ -15,6 +15,7 @@ class Request
     public function __construct()
     {
         $this->params=$_REQUEST;
+        unset($this->params['PHPSESSID']);
         $this->agent = $_SERVER['HTTP_USER_AGENT'];
         $this->method = $_SERVER['REQUEST_METHOD'];
         $this->ip = $_SERVER['REMOTE_ADDR'];

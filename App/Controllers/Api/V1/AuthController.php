@@ -1,10 +1,10 @@
 <?php
-namespace App\Controllers;
+namespace App\Controllers\Api\V1;
 
 use App\Controllers\Base\BaseController; 
 use App\Core\Request;
 use App\Models\User;
-use App\Services\Auth\SessionAuth;
+use App\Services\Auth\ApiAuth;
 
 class AuthController extends BaseController
 {
@@ -17,14 +17,6 @@ class AuthController extends BaseController
             'email'=>$request['email'],
             'password'=>hashPassword($request['password'])
         ]);
-        redirectBack();
-    }
-
-    public function login(Request $request)
-    {
-        $request=$request->getParams();
-        if(!User::login($request['email'],$request['password'], new SessionAuth() ))
-            setFlashData('LoginError','Invalid credentials');
-        return redirectBack();
+        return json($request,200);
     }
 }
