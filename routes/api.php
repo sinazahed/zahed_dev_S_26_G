@@ -14,5 +14,5 @@ Route::post('/api/v1/list/edit/{id}','Api\V1\ListController@update');
 
 Route::post('/api/v1/auth/register','Api\V1\AuthController@register');
 
-Route::post('/api/v1/auth/register','Api\V1\ListController@update');
+Route::post('/api/v1/auth/login','Api\V1\AuthController@login');
 
