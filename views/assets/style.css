@@ -59,3 +59,28 @@
     width: 50%;
     padding: 20px;
 }
+
+@media only screen and (max-width: 480px) {
+    .navbar{
+        position: relative;
+    }
+    #LoginRegister {
+      display: none;
+    }
+    .btn {
+        font-size: 10px;
+    }
+    i.bi.bi-search {
+        position: absolute;
+        left: 28%;
+        top: 33%;
+    }
+    i#darkModeButton {
+        position: absolute;
+        left: 40%;
+        top: 33%;
+    }
+    .col-auto , .col-auto button{
+        width:100%;
+    }
+  }

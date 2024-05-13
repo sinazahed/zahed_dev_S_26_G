@@ -6,7 +6,6 @@ class BaseMiddleware implements MiddlewareInterface
 {
     public function handle()
     {
-        echo "ok";
         global $request;
         $request->go();
     }

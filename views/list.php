@@ -33,7 +33,7 @@
             <?php if (isset($_SESSION['name'])) : ?>
                 <p>Welcome, <?php echo $_SESSION['name']; ?></p>
             <?php else : ?>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-login">
+                <button id="LoginRegister" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-login">
                     Login or Register
                 </button>
             <?php endif; ?>
