@@ -15,3 +15,7 @@ Route::post('/list/toggle','ListController@toggle');
 
 Route::post('/auth/register','AuthController@register');
 Route::post('/auth/login','AuthController@login');
+
+//search 
+
+Route::get('/search/item/{text}','SearchController@search');

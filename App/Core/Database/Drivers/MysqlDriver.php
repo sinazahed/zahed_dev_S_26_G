@@ -122,6 +122,37 @@ class MysqlDriver implements DatabaseInterface
         return $sth->fetchAll(\PDO::FETCH_OBJ);
     }
     
+    public function search(string $table, array $columns, string $text)
+    {
+        $this->connect();
+    
+        // Create placeholders for columns in the WHERE clause
+        $columnConditions = [];
+        foreach ($columns as $column) {
+            $columnConditions[] = "$column LIKE ?";
+        }
+    
+        // Join the column conditions with OR
+        $columnCondition = implode(" OR ", $columnConditions);
+    
+        // Prepare the statement
+        $query = "SELECT * FROM $table WHERE $columnCondition";
+        $stmt = $this->connection->prepare($query);
+    
+        // Bind the search text to each placeholder
+        $searchText = "%" . $text . "%";
+        foreach ($columns as $index => $column) {
+            $stmt->bindValue($index + 1, $searchText, \PDO::PARAM_STR);
+        }
+    
+        // Execute the statement
+        $stmt->execute();
+    
+        // Fetch the results
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    
+    
 
 
     

@@ -48,4 +48,9 @@ abstract class Model
         return self::$db->get();
     }
 
+    public static function search(array $columns, string $text)
+    {
+        return self::$db->search(static::$table, $columns, $text);
+    }
+
 }

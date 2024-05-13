@@ -13,6 +13,7 @@
     </style> <!--  internal css -->
 
 <body>
+    <?php include('search.php') ?>
     <?php include('alerts.php') ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -28,6 +29,7 @@
                 </div>
             </div>
             <i id="darkModeButton" style="margin-right:30px;cursor:pointer" class="bi bi-brightness-high"></i></a>
+            <i style="margin-right:30px;cursor:pointer" onclick="showSearch()" class="bi bi-search"></i>
             <?php if (isset($_SESSION['name'])) : ?>
                 <p>Welcome, <?php echo $_SESSION['name']; ?></p>
             <?php else : ?>
@@ -145,6 +147,53 @@
                 darkModeButton.classList.add('bi-brightness-high');
             }
         });
+
+        //Live search
+
+        function showResult(str) {
+            var searchText = document.getElementById('livesearch').value;
+
+            // Check if the input value is empty
+            if (searchText.trim() === '') {
+                document.getElementById("searchResult").innerHTML = ""; // Clear the search result
+                return;
+            }
+            if (str.length == 0) {
+                document.getElementById("livesearch").innerHTML = "";
+                document.getElementById("livesearch").style.border = "0px";
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Parse the JSON response
+                    var results = JSON.parse(this.responseText);
+                    // Generate HTML for the search results
+                    var html = '';
+                    results.forEach(function(item) {
+                        html += '<div>';
+                        html += '<p>' + item.title + '</p>';
+                        html += '<hr>';
+                        html += '</div>';
+                    });
+                    // Display the HTML in the livesearch div
+                    document.getElementById("searchResult").innerHTML = html;
+                }
+            }
+            // Make an AJAX request to your PHP endpoint
+            xmlhttp.open("GET", "<?php echo siteUrl('search/item/') ?>" + str, true);
+            xmlhttp.send();
+        }
+
+        function hideSearch() {
+            var searchDiv = document.getElementById('search');
+            searchDiv.style.display = 'none';
+        }
+
+        function showSearch() {
+            var searchDiv = document.getElementById('search');
+            searchDiv.style.display = 'block';
+        }
     </script>
 </body>
 
