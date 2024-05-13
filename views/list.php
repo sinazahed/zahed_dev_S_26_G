@@ -18,6 +18,8 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="" style="margin-top: -10px;"><i style="color: #75b798; font-size: 37px; margin-left: 20px; margin-right: 20px;" class="bi bi-cart-plus-fill"></i></a>
+            <i style="margin-right:30px;cursor:pointer" onclick="showSearch()" class="bi bi-search"></i>
+            <i id="darkModeButton" style="margin-right:30px;cursor:pointer" class="bi bi-brightness-high"></i></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,8 +30,6 @@
                     <a class="nav-link" href="https://github.com/sinazahed/zahed_dev_S_26_G" target="_blank">Github</a>
                 </div>
             </div>
-            <i id="darkModeButton" style="margin-right:30px;cursor:pointer" class="bi bi-brightness-high"></i></a>
-            <i style="margin-right:30px;cursor:pointer" onclick="showSearch()" class="bi bi-search"></i>
             <?php if (isset($_SESSION['name'])) : ?>
                 <p>Welcome, <?php echo $_SESSION['name']; ?></p>
             <?php else : ?>
@@ -37,7 +37,6 @@
                     Login or Register
                 </button>
             <?php endif; ?>
-
             <?php include('modal/login.php') ?>
         </div>
     </nav>

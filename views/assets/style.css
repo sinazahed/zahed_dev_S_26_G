@@ -71,12 +71,10 @@
         font-size: 10px;
     }
     i.bi.bi-search {
-        position: absolute;
         left: 28%;
         top: 33%;
     }
     i#darkModeButton {
-        position: absolute;
         left: 40%;
         top: 33%;
     }
