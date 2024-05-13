@@ -27,6 +27,7 @@
                     <a class="nav-link" href="https://github.com/sinazahed/zahed_dev_S_26_G" target="_blank">Github</a>
                 </div>
             </div>
+            <i id="darkModeButton" style="margin-right:30px;cursor:pointer" class="bi bi-brightness-high"></i></a>
             <?php if (isset($_SESSION['name'])) : ?>
                 <p>Welcome, <?php echo $_SESSION['name']; ?></p>
             <?php else : ?>
@@ -39,8 +40,9 @@
         </div>
     </nav>
     <?php include('about.php') ?>
-    <div class="container">
-        <div class="row">
+    <br>
+    <div class="container" style="border-radius: 20px">
+        <div class="row" style="border-radius: 20px">
             <form method="post" action="<?php echo siteUrl('list/add') ?>" class="row g-3">
                 <div class="col-lg-5">
                     <input type="text" name="title" class="form-control" placeholder="Add new product to shopping list">
@@ -126,6 +128,23 @@
         setTimeout(function() {
             element.style.display = 'none';
         }, 1500); // 3000 milliseconds = 3 seconds
+
+
+        // Dark mode
+
+        const darkModeButton = document.getElementById('darkModeButton');
+        const body = document.body;
+
+        darkModeButton.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            if (darkModeButton.classList.contains('bi-brightness-high')) {
+                darkModeButton.classList.remove('bi-brightness-high');
+                darkModeButton.classList.add('bi-moon');
+            } else {
+                darkModeButton.classList.remove('bi-moon');
+                darkModeButton.classList.add('bi-brightness-high');
+            }
+        });
     </script>
 </body>
 

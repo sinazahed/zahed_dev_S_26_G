@@ -4,3 +4,27 @@
     right: 0;
     width: 30%;
 }
+.dark-mode {
+    background: #343a40;
+}
+.dark-mode a , .dark-mode div table td  , .dark-mode div table th , .dark-mode label{
+    color:white;
+    border-color: #343a40;
+}
+.dark-mode nav , .dark-mode div , .dark-mode div table td , .dark-mode div table th , .dark-mode input {
+    background-color: #212529 !important;
+}
+
+.dark-mode div table tr{
+     border:none; 
+}
+.dark-mode input,.dark-mode h1,.dark-mode p {
+    border-color: #343a40;
+    color: white !important;
+}
+.dark-mode input::placeholder {
+    color:dimgrey;
+}
+.bi-moon{
+    color:white;
+}
