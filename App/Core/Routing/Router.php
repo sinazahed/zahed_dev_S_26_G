@@ -21,6 +21,16 @@ class Router
         $this->routes = Route::all();
         $this->validator = new Validator();
         $this->current_route = $this->findRoute();
+        $this->run_middleware();
+    }
+
+    private function run_middleware() : void
+    {
+        $middlewares = $this->current_route['middleware'] ?? [];
+        foreach($middlewares as $middleware){
+            $middlewareObj = new $middleware();
+            $middlewareObj->handle();
+        }
     }
 
     public function findRoute() : array

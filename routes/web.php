@@ -1,7 +1,8 @@
 <?php
 use App\Core\Routing\Route;
+use App\Middleware\BaseMiddleware;
 
-Route::get('/list','ListController@index');
+Route::get('/list','ListController@index',[BaseMiddleware::class]);
 
 Route::post('/list/add','ListController@create');
 
