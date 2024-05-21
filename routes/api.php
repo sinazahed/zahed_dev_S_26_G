@@ -16,3 +16,4 @@ Route::post('/api/v1/auth/register','Api\V1\AuthController@register');
 
 Route::post('/api/v1/auth/login','Api\V1\AuthController@login');
 
+Route::get('/api/v1/search/item/{text}','Api\v1\SearchController@search');
